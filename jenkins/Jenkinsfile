@@ -81,7 +81,7 @@ pipeline {
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nx-admin', passwordVariable:'admin', usernameVariable: 'admin')]) {
-                    sh "mvn deploy -Dnexus.address=http://${admin}:${admin}@${env.host.docker.internal:8081} -DaltDeploymentRepository=releaseRepository::default::http://${admin}:${admin}@${env.host.docker.internal:8081}/repository/maven-releases -DskipTests"
+                    sh "mvn deploy -Dnexus.address=http://${admin}:${admin}@${env.NEXUS_ADDRESS} -DaltDeploymentRepository=releaseRepository::default::http://${admin}:${admin}@${env.host.docker.internal:8081}/repository/maven-releases -DskipTests"
                 }
             }
         }
